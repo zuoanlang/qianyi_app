@@ -1,0 +1,521 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.itheima.microservice.course.mapper.TbCourseMapper" >
+  <resultMap id="BaseResultMap" type="com.itheima.microservice.course.pojo.TbCourse" >
+    <id column="course_id" property="courseId" jdbcType="VARCHAR" />
+    <result column="course_name" property="courseName" jdbcType="VARCHAR" />
+    <result column="course_type" property="courseType" jdbcType="CHAR" />
+    <result column="course_level" property="courseLevel" jdbcType="CHAR" />
+    <result column="course_is_online" property="courseIsOnline" jdbcType="CHAR" />
+    <result column="course_price" property="coursePrice" jdbcType="INTEGER" />
+    <result column="course_img" property="courseImg" jdbcType="VARCHAR" />
+    <result column="course_file_path" property="courseFilePath" jdbcType="VARCHAR" />
+    <result column="course_description" property="courseDescription" jdbcType="VARCHAR" />
+    <result column="course_learning_frequency" property="courseLearningFrequency" jdbcType="BIGINT" />
+    <result column="course_belongTo" property="courseBelongto" jdbcType="VARCHAR" />
+    <result column="course_is_hot" property="courseIsHot" jdbcType="CHAR" />
+    <result column="effect_flag" property="effectFlag" jdbcType="CHAR" />
+    <result column="delete_flag" property="deleteFlag" jdbcType="CHAR" />
+    <result column="remark1" property="remark1" jdbcType="VARCHAR" />
+    <result column="remark2" property="remark2" jdbcType="VARCHAR" />
+    <result column="remark3" property="remark3" jdbcType="VARCHAR" />
+    <result column="remark4" property="remark4" jdbcType="VARCHAR" />
+    <result column="remark5" property="remark5" jdbcType="VARCHAR" />
+
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.itheima.microservice.course.pojo.TbCourse" extends="BaseResultMap" >
+    <result column="course_catalog" property="courseCatalog" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    course_id, course_name, course_type, course_level, course_is_online, course_price, 
+    course_img, course_file_path, course_description, course_learning_frequency, course_belongTo, 
+    course_is_hot, effect_flag, delete_flag, remark1, remark2, remark3, remark4, remark5
+  </sql>
+  <sql id="Blob_Column_List" >
+    course_catalog
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.itheima.microservice.course.pojo.TbCourseExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from tb_course
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.itheima.microservice.course.pojo.TbCourseExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_course
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from tb_course
+    where course_id = #{courseId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from tb_course
+    where course_id = #{courseId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.itheima.microservice.course.pojo.TbCourseExample" >
+    delete from tb_course
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.itheima.microservice.course.pojo.TbCourse" >
+    insert into tb_course (course_id, course_name, course_type, 
+      course_level, course_is_online, course_price, 
+      course_img, course_file_path, course_description, 
+      course_learning_frequency, course_belongTo, 
+      course_is_hot, effect_flag, delete_flag, 
+      remark1, remark2, remark3, 
+      remark4, remark5, course_catalog
+      )
+    values (#{courseId,jdbcType=VARCHAR}, #{courseName,jdbcType=VARCHAR}, #{courseType,jdbcType=CHAR}, 
+      #{courseLevel,jdbcType=CHAR}, #{courseIsOnline,jdbcType=CHAR}, #{coursePrice,jdbcType=INTEGER}, 
+      #{courseImg,jdbcType=VARCHAR}, #{courseFilePath,jdbcType=VARCHAR}, #{courseDescription,jdbcType=VARCHAR}, 
+      #{courseLearningFrequency,jdbcType=BIGINT}, #{courseBelongto,jdbcType=VARCHAR}, 
+      #{courseIsHot,jdbcType=CHAR}, #{effectFlag,jdbcType=CHAR}, #{deleteFlag,jdbcType=CHAR}, 
+      #{remark1,jdbcType=VARCHAR}, #{remark2,jdbcType=VARCHAR}, #{remark3,jdbcType=VARCHAR}, 
+      #{remark4,jdbcType=VARCHAR}, #{remark5,jdbcType=VARCHAR}, #{courseCatalog,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.itheima.microservice.course.pojo.TbCourse" >
+    insert into tb_course
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="courseId != null" >
+        course_id,
+      </if>
+      <if test="courseName != null" >
+        course_name,
+      </if>
+      <if test="courseType != null" >
+        course_type,
+      </if>
+      <if test="courseLevel != null" >
+        course_level,
+      </if>
+      <if test="courseIsOnline != null" >
+        course_is_online,
+      </if>
+      <if test="coursePrice != null" >
+        course_price,
+      </if>
+      <if test="courseImg != null" >
+        course_img,
+      </if>
+      <if test="courseFilePath != null" >
+        course_file_path,
+      </if>
+      <if test="courseDescription != null" >
+        course_description,
+      </if>
+      <if test="courseLearningFrequency != null" >
+        course_learning_frequency,
+      </if>
+      <if test="courseBelongto != null" >
+        course_belongTo,
+      </if>
+      <if test="courseIsHot != null" >
+        course_is_hot,
+      </if>
+      <if test="effectFlag != null" >
+        effect_flag,
+      </if>
+      <if test="deleteFlag != null" >
+        delete_flag,
+      </if>
+      <if test="remark1 != null" >
+        remark1,
+      </if>
+      <if test="remark2 != null" >
+        remark2,
+      </if>
+      <if test="remark3 != null" >
+        remark3,
+      </if>
+      <if test="remark4 != null" >
+        remark4,
+      </if>
+      <if test="remark5 != null" >
+        remark5,
+      </if>
+      <if test="courseCatalog != null" >
+        course_catalog,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="courseId != null" >
+        #{courseId,jdbcType=VARCHAR},
+      </if>
+      <if test="courseName != null" >
+        #{courseName,jdbcType=VARCHAR},
+      </if>
+      <if test="courseType != null" >
+        #{courseType,jdbcType=CHAR},
+      </if>
+      <if test="courseLevel != null" >
+        #{courseLevel,jdbcType=CHAR},
+      </if>
+      <if test="courseIsOnline != null" >
+        #{courseIsOnline,jdbcType=CHAR},
+      </if>
+      <if test="coursePrice != null" >
+        #{coursePrice,jdbcType=INTEGER},
+      </if>
+      <if test="courseImg != null" >
+        #{courseImg,jdbcType=VARCHAR},
+      </if>
+      <if test="courseFilePath != null" >
+        #{courseFilePath,jdbcType=VARCHAR},
+      </if>
+      <if test="courseDescription != null" >
+        #{courseDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="courseLearningFrequency != null" >
+        #{courseLearningFrequency,jdbcType=BIGINT},
+      </if>
+      <if test="courseBelongto != null" >
+        #{courseBelongto,jdbcType=VARCHAR},
+      </if>
+      <if test="courseIsHot != null" >
+        #{courseIsHot,jdbcType=CHAR},
+      </if>
+      <if test="effectFlag != null" >
+        #{effectFlag,jdbcType=CHAR},
+      </if>
+      <if test="deleteFlag != null" >
+        #{deleteFlag,jdbcType=CHAR},
+      </if>
+      <if test="remark1 != null" >
+        #{remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="remark2 != null" >
+        #{remark2,jdbcType=VARCHAR},
+      </if>
+      <if test="remark3 != null" >
+        #{remark3,jdbcType=VARCHAR},
+      </if>
+      <if test="remark4 != null" >
+        #{remark4,jdbcType=VARCHAR},
+      </if>
+      <if test="remark5 != null" >
+        #{remark5,jdbcType=VARCHAR},
+      </if>
+      <if test="courseCatalog != null" >
+        #{courseCatalog,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.itheima.microservice.course.pojo.TbCourseExample" resultType="java.lang.Integer" >
+    select count(*) from tb_course
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tb_course
+    <set >
+      <if test="record.courseId != null" >
+        course_id = #{record.courseId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.courseName != null" >
+        course_name = #{record.courseName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.courseType != null" >
+        course_type = #{record.courseType,jdbcType=CHAR},
+      </if>
+      <if test="record.courseLevel != null" >
+        course_level = #{record.courseLevel,jdbcType=CHAR},
+      </if>
+      <if test="record.courseIsOnline != null" >
+        course_is_online = #{record.courseIsOnline,jdbcType=CHAR},
+      </if>
+      <if test="record.coursePrice != null" >
+        course_price = #{record.coursePrice,jdbcType=INTEGER},
+      </if>
+      <if test="record.courseImg != null" >
+        course_img = #{record.courseImg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.courseFilePath != null" >
+        course_file_path = #{record.courseFilePath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.courseDescription != null" >
+        course_description = #{record.courseDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="record.courseLearningFrequency != null" >
+        course_learning_frequency = #{record.courseLearningFrequency,jdbcType=BIGINT},
+      </if>
+      <if test="record.courseBelongto != null" >
+        course_belongTo = #{record.courseBelongto,jdbcType=VARCHAR},
+      </if>
+      <if test="record.courseIsHot != null" >
+        course_is_hot = #{record.courseIsHot,jdbcType=CHAR},
+      </if>
+      <if test="record.effectFlag != null" >
+        effect_flag = #{record.effectFlag,jdbcType=CHAR},
+      </if>
+      <if test="record.deleteFlag != null" >
+        delete_flag = #{record.deleteFlag,jdbcType=CHAR},
+      </if>
+      <if test="record.remark1 != null" >
+        remark1 = #{record.remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark2 != null" >
+        remark2 = #{record.remark2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark3 != null" >
+        remark3 = #{record.remark3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark4 != null" >
+        remark4 = #{record.remark4,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark5 != null" >
+        remark5 = #{record.remark5,jdbcType=VARCHAR},
+      </if>
+      <if test="record.courseCatalog != null" >
+        course_catalog = #{record.courseCatalog,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update tb_course
+    set course_id = #{record.courseId,jdbcType=VARCHAR},
+      course_name = #{record.courseName,jdbcType=VARCHAR},
+      course_type = #{record.courseType,jdbcType=CHAR},
+      course_level = #{record.courseLevel,jdbcType=CHAR},
+      course_is_online = #{record.courseIsOnline,jdbcType=CHAR},
+      course_price = #{record.coursePrice,jdbcType=INTEGER},
+      course_img = #{record.courseImg,jdbcType=VARCHAR},
+      course_file_path = #{record.courseFilePath,jdbcType=VARCHAR},
+      course_description = #{record.courseDescription,jdbcType=VARCHAR},
+      course_learning_frequency = #{record.courseLearningFrequency,jdbcType=BIGINT},
+      course_belongTo = #{record.courseBelongto,jdbcType=VARCHAR},
+      course_is_hot = #{record.courseIsHot,jdbcType=CHAR},
+      effect_flag = #{record.effectFlag,jdbcType=CHAR},
+      delete_flag = #{record.deleteFlag,jdbcType=CHAR},
+      remark1 = #{record.remark1,jdbcType=VARCHAR},
+      remark2 = #{record.remark2,jdbcType=VARCHAR},
+      remark3 = #{record.remark3,jdbcType=VARCHAR},
+      remark4 = #{record.remark4,jdbcType=VARCHAR},
+      remark5 = #{record.remark5,jdbcType=VARCHAR},
+      course_catalog = #{record.courseCatalog,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tb_course
+    set course_id = #{record.courseId,jdbcType=VARCHAR},
+      course_name = #{record.courseName,jdbcType=VARCHAR},
+      course_type = #{record.courseType,jdbcType=CHAR},
+      course_level = #{record.courseLevel,jdbcType=CHAR},
+      course_is_online = #{record.courseIsOnline,jdbcType=CHAR},
+      course_price = #{record.coursePrice,jdbcType=INTEGER},
+      course_img = #{record.courseImg,jdbcType=VARCHAR},
+      course_file_path = #{record.courseFilePath,jdbcType=VARCHAR},
+      course_description = #{record.courseDescription,jdbcType=VARCHAR},
+      course_learning_frequency = #{record.courseLearningFrequency,jdbcType=BIGINT},
+      course_belongTo = #{record.courseBelongto,jdbcType=VARCHAR},
+      course_is_hot = #{record.courseIsHot,jdbcType=CHAR},
+      effect_flag = #{record.effectFlag,jdbcType=CHAR},
+      delete_flag = #{record.deleteFlag,jdbcType=CHAR},
+      remark1 = #{record.remark1,jdbcType=VARCHAR},
+      remark2 = #{record.remark2,jdbcType=VARCHAR},
+      remark3 = #{record.remark3,jdbcType=VARCHAR},
+      remark4 = #{record.remark4,jdbcType=VARCHAR},
+      remark5 = #{record.remark5,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.itheima.microservice.course.pojo.TbCourse" >
+    update tb_course
+    <set >
+      <if test="courseName != null" >
+        course_name = #{courseName,jdbcType=VARCHAR},
+      </if>
+      <if test="courseType != null" >
+        course_type = #{courseType,jdbcType=CHAR},
+      </if>
+      <if test="courseLevel != null" >
+        course_level = #{courseLevel,jdbcType=CHAR},
+      </if>
+      <if test="courseIsOnline != null" >
+        course_is_online = #{courseIsOnline,jdbcType=CHAR},
+      </if>
+      <if test="coursePrice != null" >
+        course_price = #{coursePrice,jdbcType=INTEGER},
+      </if>
+      <if test="courseImg != null" >
+        course_img = #{courseImg,jdbcType=VARCHAR},
+      </if>
+      <if test="courseFilePath != null" >
+        course_file_path = #{courseFilePath,jdbcType=VARCHAR},
+      </if>
+      <if test="courseDescription != null" >
+        course_description = #{courseDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="courseLearningFrequency != null" >
+        course_learning_frequency = #{courseLearningFrequency,jdbcType=BIGINT},
+      </if>
+      <if test="courseBelongto != null" >
+        course_belongTo = #{courseBelongto,jdbcType=VARCHAR},
+      </if>
+      <if test="courseIsHot != null" >
+        course_is_hot = #{courseIsHot,jdbcType=CHAR},
+      </if>
+      <if test="effectFlag != null" >
+        effect_flag = #{effectFlag,jdbcType=CHAR},
+      </if>
+      <if test="deleteFlag != null" >
+        delete_flag = #{deleteFlag,jdbcType=CHAR},
+      </if>
+      <if test="remark1 != null" >
+        remark1 = #{remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="remark2 != null" >
+        remark2 = #{remark2,jdbcType=VARCHAR},
+      </if>
+      <if test="remark3 != null" >
+        remark3 = #{remark3,jdbcType=VARCHAR},
+      </if>
+      <if test="remark4 != null" >
+        remark4 = #{remark4,jdbcType=VARCHAR},
+      </if>
+      <if test="remark5 != null" >
+        remark5 = #{remark5,jdbcType=VARCHAR},
+      </if>
+      <if test="courseCatalog != null" >
+        course_catalog = #{courseCatalog,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where course_id = #{courseId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.itheima.microservice.course.pojo.TbCourse" >
+    update tb_course
+    set course_name = #{courseName,jdbcType=VARCHAR},
+      course_type = #{courseType,jdbcType=CHAR},
+      course_level = #{courseLevel,jdbcType=CHAR},
+      course_is_online = #{courseIsOnline,jdbcType=CHAR},
+      course_price = #{coursePrice,jdbcType=INTEGER},
+      course_img = #{courseImg,jdbcType=VARCHAR},
+      course_file_path = #{courseFilePath,jdbcType=VARCHAR},
+      course_description = #{courseDescription,jdbcType=VARCHAR},
+      course_learning_frequency = #{courseLearningFrequency,jdbcType=BIGINT},
+      course_belongTo = #{courseBelongto,jdbcType=VARCHAR},
+      course_is_hot = #{courseIsHot,jdbcType=CHAR},
+      effect_flag = #{effectFlag,jdbcType=CHAR},
+      delete_flag = #{deleteFlag,jdbcType=CHAR},
+      remark1 = #{remark1,jdbcType=VARCHAR},
+      remark2 = #{remark2,jdbcType=VARCHAR},
+      remark3 = #{remark3,jdbcType=VARCHAR},
+      remark4 = #{remark4,jdbcType=VARCHAR},
+      remark5 = #{remark5,jdbcType=VARCHAR},
+      course_catalog = #{courseCatalog,jdbcType=LONGVARCHAR}
+    where course_id = #{courseId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.itheima.microservice.course.pojo.TbCourse" >
+    update tb_course
+    set course_name = #{courseName,jdbcType=VARCHAR},
+      course_type = #{courseType,jdbcType=CHAR},
+      course_level = #{courseLevel,jdbcType=CHAR},
+      course_is_online = #{courseIsOnline,jdbcType=CHAR},
+      course_price = #{coursePrice,jdbcType=INTEGER},
+      course_img = #{courseImg,jdbcType=VARCHAR},
+      course_file_path = #{courseFilePath,jdbcType=VARCHAR},
+      course_description = #{courseDescription,jdbcType=VARCHAR},
+      course_learning_frequency = #{courseLearningFrequency,jdbcType=BIGINT},
+      course_belongTo = #{courseBelongto,jdbcType=VARCHAR},
+      course_is_hot = #{courseIsHot,jdbcType=CHAR},
+      effect_flag = #{effectFlag,jdbcType=CHAR},
+      delete_flag = #{deleteFlag,jdbcType=CHAR},
+      remark1 = #{remark1,jdbcType=VARCHAR},
+      remark2 = #{remark2,jdbcType=VARCHAR},
+      remark3 = #{remark3,jdbcType=VARCHAR},
+      remark4 = #{remark4,jdbcType=VARCHAR},
+      remark5 = #{remark5,jdbcType=VARCHAR}
+    where course_id = #{courseId,jdbcType=VARCHAR}
+  </update>
+</mapper>
