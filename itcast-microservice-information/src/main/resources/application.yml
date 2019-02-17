@@ -8,7 +8,7 @@ spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
-    url: jdbc:mysql://127.0.0.1:3306/qianyi
+    url: jdbc:mysql://127.0.0.1:3306/bos32
     username: root
     password:
 

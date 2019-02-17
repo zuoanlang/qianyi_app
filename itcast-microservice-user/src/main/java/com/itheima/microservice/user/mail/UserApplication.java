@@ -1,6 +1,7 @@
 package com.itheima.microservice.user.mail;
 
 import com.itheima.microservice.user.util.SpringContextUtils;
+
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -18,7 +19,7 @@ import org.springframework.context.annotation.ComponentScan;
 public class UserApplication {
     public static void main(String[] args) {
         ApplicationContext applicationContext = SpringApplication.run(UserApplication.class, args);
-        SpringContextUtils.setApplicationContext(applicationContext);
+//        SpringContextUtils.setApplicationContext(applicationContext);
     }
 
 }

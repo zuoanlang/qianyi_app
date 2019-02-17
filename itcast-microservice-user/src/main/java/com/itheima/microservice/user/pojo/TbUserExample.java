@@ -1743,52 +1743,52 @@ public class TbUserExample {
         }
 
         public Criteria andRegisterTimeEqualTo(Date value) {
-            addCriterionForJDBCDate("register_time =", value, "registerTime");
+            addCriterion("register_time =", value, "registerTime");
             return (Criteria) this;
         }
 
         public Criteria andRegisterTimeNotEqualTo(Date value) {
-            addCriterionForJDBCDate("register_time <>", value, "registerTime");
+            addCriterion("register_time <>", value, "registerTime");
             return (Criteria) this;
         }
 
         public Criteria andRegisterTimeGreaterThan(Date value) {
-            addCriterionForJDBCDate("register_time >", value, "registerTime");
+            addCriterion("register_time >", value, "registerTime");
             return (Criteria) this;
         }
 
         public Criteria andRegisterTimeGreaterThanOrEqualTo(Date value) {
-            addCriterionForJDBCDate("register_time >=", value, "registerTime");
+            addCriterion("register_time >=", value, "registerTime");
             return (Criteria) this;
         }
 
         public Criteria andRegisterTimeLessThan(Date value) {
-            addCriterionForJDBCDate("register_time <", value, "registerTime");
+            addCriterion("register_time <", value, "registerTime");
             return (Criteria) this;
         }
 
         public Criteria andRegisterTimeLessThanOrEqualTo(Date value) {
-            addCriterionForJDBCDate("register_time <=", value, "registerTime");
+            addCriterion("register_time <=", value, "registerTime");
             return (Criteria) this;
         }
 
         public Criteria andRegisterTimeIn(List<Date> values) {
-            addCriterionForJDBCDate("register_time in", values, "registerTime");
+            addCriterion("register_time in", values, "registerTime");
             return (Criteria) this;
         }
 
         public Criteria andRegisterTimeNotIn(List<Date> values) {
-            addCriterionForJDBCDate("register_time not in", values, "registerTime");
+            addCriterion("register_time not in", values, "registerTime");
             return (Criteria) this;
         }
 
         public Criteria andRegisterTimeBetween(Date value1, Date value2) {
-            addCriterionForJDBCDate("register_time between", value1, value2, "registerTime");
+            addCriterion("register_time between", value1, value2, "registerTime");
             return (Criteria) this;
         }
 
         public Criteria andRegisterTimeNotBetween(Date value1, Date value2) {
-            addCriterionForJDBCDate("register_time not between", value1, value2, "registerTime");
+            addCriterion("register_time not between", value1, value2, "registerTime");
             return (Criteria) this;
         }
 
@@ -1803,52 +1803,52 @@ public class TbUserExample {
         }
 
         public Criteria andLastLoginTimeEqualTo(Date value) {
-            addCriterionForJDBCDate("last_login_time =", value, "lastLoginTime");
+            addCriterion("last_login_time =", value, "lastLoginTime");
             return (Criteria) this;
         }
 
         public Criteria andLastLoginTimeNotEqualTo(Date value) {
-            addCriterionForJDBCDate("last_login_time <>", value, "lastLoginTime");
+            addCriterion("last_login_time <>", value, "lastLoginTime");
             return (Criteria) this;
         }
 
         public Criteria andLastLoginTimeGreaterThan(Date value) {
-            addCriterionForJDBCDate("last_login_time >", value, "lastLoginTime");
+            addCriterion("last_login_time >", value, "lastLoginTime");
             return (Criteria) this;
         }
 
         public Criteria andLastLoginTimeGreaterThanOrEqualTo(Date value) {
-            addCriterionForJDBCDate("last_login_time >=", value, "lastLoginTime");
+            addCriterion("last_login_time >=", value, "lastLoginTime");
             return (Criteria) this;
         }
 
         public Criteria andLastLoginTimeLessThan(Date value) {
-            addCriterionForJDBCDate("last_login_time <", value, "lastLoginTime");
+            addCriterion("last_login_time <", value, "lastLoginTime");
             return (Criteria) this;
         }
 
         public Criteria andLastLoginTimeLessThanOrEqualTo(Date value) {
-            addCriterionForJDBCDate("last_login_time <=", value, "lastLoginTime");
+            addCriterion("last_login_time <=", value, "lastLoginTime");
             return (Criteria) this;
         }
 
         public Criteria andLastLoginTimeIn(List<Date> values) {
-            addCriterionForJDBCDate("last_login_time in", values, "lastLoginTime");
+            addCriterion("last_login_time in", values, "lastLoginTime");
             return (Criteria) this;
         }
 
         public Criteria andLastLoginTimeNotIn(List<Date> values) {
-            addCriterionForJDBCDate("last_login_time not in", values, "lastLoginTime");
+            addCriterion("last_login_time not in", values, "lastLoginTime");
             return (Criteria) this;
         }
 
         public Criteria andLastLoginTimeBetween(Date value1, Date value2) {
-            addCriterionForJDBCDate("last_login_time between", value1, value2, "lastLoginTime");
+            addCriterion("last_login_time between", value1, value2, "lastLoginTime");
             return (Criteria) this;
         }
 
         public Criteria andLastLoginTimeNotBetween(Date value1, Date value2) {
-            addCriterionForJDBCDate("last_login_time not between", value1, value2, "lastLoginTime");
+            addCriterion("last_login_time not between", value1, value2, "lastLoginTime");
             return (Criteria) this;
         }
 
