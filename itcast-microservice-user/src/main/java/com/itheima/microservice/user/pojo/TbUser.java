@@ -39,6 +39,10 @@ public class TbUser {
 
     private String hobby;
 
+    private String handphone;
+
+    private String telephone;
+
     private String qq;
 
     private String weixin;
@@ -205,6 +209,22 @@ public class TbUser {
 
     public void setHobby(String hobby) {
         this.hobby = hobby == null ? null : hobby.trim();
+    }
+
+    public String getHandphone() {
+        return handphone;
+    }
+
+    public void setHandphone(String handphone) {
+        this.handphone = handphone == null ? null : handphone.trim();
+    }
+
+    public String getTelephone() {
+        return telephone;
+    }
+
+    public void setTelephone(String telephone) {
+        this.telephone = telephone == null ? null : telephone.trim();
     }
 
     public String getQq() {
