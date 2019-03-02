@@ -80,6 +80,13 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-aop</artifactId>
         </dependency>
+        <!--page-Helper-->
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper</artifactId>
+            <version>3.4.2-fix</version>
+        </dependency>
+
         <!--热部署-->
         <!--<dependency>-->
         <!--<groupId>org.springframework.boot</groupId>-->

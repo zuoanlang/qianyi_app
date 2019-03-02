@@ -14,7 +14,6 @@ import org.springframework.web.client.RestTemplate;
 @EnableHystrix
 @EnableDiscoveryClient
 @SpringBootApplication
-//@ComponentScan(basePackages = {"com.itheima.microservice"})
 public class SsoApplication {
 
     @Bean // 向Spring容器中定义RestTemplate对象

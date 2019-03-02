@@ -25,6 +25,14 @@ mybatis:
   type-aliases-package: com.itheima.microservice.user.pojo
 ################################################################
 ################################################################
+# 分页配置
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  params: count=countSql
+################################################################
+################################################################
 eureka:
   client:
     registerWithEureka: true #是否将自己注册到Eureka服务中，默认为true
@@ -46,6 +54,7 @@ eureka:
 logging:
   level:
     root: debug
+    com.itheima.microservice.user.mapper : debug
 #    org.springframework.web: DEBUG
   file: /log/log/my_provide.log
   pattern:
