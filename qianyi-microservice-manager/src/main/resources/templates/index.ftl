@@ -36,7 +36,7 @@
          	<li>
          		<span>网站内容管理</span>
          		<ul>
-	         		<li data-options="attributes:{'url':'../pages/content-category'}">内容分类管理</li>
+	         		<li data-options="attributes:{'url':'../pages/content-category'}">数据字典</li>
 	         		<li data-options="attributes:{'url':'../pages/content'}">内容管理</li>
 	         	</ul>
          	</li>

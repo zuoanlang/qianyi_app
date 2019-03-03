@@ -8,7 +8,17 @@ spring:
     encoding: UTF-8
     content-type: text/html
     cache: false
-
+    settings: template_update_delay=0
+  # mysql 属性配置
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://127.0.0.1:3306/qianyi?useUnicode=true&characterEncoding=UTF-8
+    username: root
+    password:
+  devtools:
+    restart:
+      enabled: true #是否开启开发者工具（true/false）
 
 eureka:
   client:

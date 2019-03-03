@@ -23,13 +23,13 @@ import java.util.List;
 public class CategoryController {
 
 	@Autowired
-	private CategoryService categoryService;
+	private CategoryService categoryServiceImpl;
 	
 	@RequestMapping("/category/list")
 	@ResponseBody
 	public List<EasyUITreeNode> getCatList(
 			@RequestParam(name="id", defaultValue="0")Long parentId) {
-		List<EasyUITreeNode> list = categoryService.getContentCatList(parentId);
+		List<EasyUITreeNode> list = categoryServiceImpl.getContentCatList(parentId);
 		return list;
 	}
 	
@@ -40,7 +40,7 @@ public class CategoryController {
 	@ResponseBody
 	public E3Result createCategory(Long parentId, String name) {
 		//调用服务添加节点
-		E3Result e3Result = categoryService.addContentCategory(parentId, name);
+		E3Result e3Result = categoryServiceImpl.addContentCategory(parentId, name);
 		return e3Result;
 	}
 	
