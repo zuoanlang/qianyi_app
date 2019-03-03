@@ -2,13 +2,13 @@ server:
   port: ${port} #服务端口
 spring:
   application:
-    name: itcast-microservice-user #指定服务名
+    name: itcast-microservice-course #指定服务名
 ################################################################
 # mysql 属性配置
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
-    url: jdbc:mysql://127.0.0.1:3306/qianyi
+    url: jdbc:mysql://192.168.0.107:3306/qianyi
     username: root
     password:
 
@@ -46,6 +46,7 @@ eureka:
 logging:
   level:
     root: debug
+    com.itheima.microservice.course.mapper : debug
 #    org.springframework.web: DEBUG
   file: /log/log/my_provide.log
   pattern:

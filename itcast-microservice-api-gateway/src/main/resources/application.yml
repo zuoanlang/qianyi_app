@@ -13,6 +13,9 @@ zuul:
       path: /item-service/** #配置请求URL的请求规则
 #      url: http://127.0.0.1:8081 #真正的微服务地址
       serviceId: itcast-microservice-item
+    course-service: #sso-service单点登录
+      path: /course-service/** #配置请求URL的请求规则
+      serviceId: itcast-microservice-course
 
 eureka:
   client:
