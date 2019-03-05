@@ -1,0 +1,447 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.itheima.microservice.information.mapper.TbInformationMapper" >
+  <resultMap id="BaseResultMap" type="com.itheima.microservice.information.pojo.TbInformation" >
+    <id column="info_id" property="infoId" jdbcType="VARCHAR" />
+    <result column="info_type" property="infoType" jdbcType="CHAR" />
+    <result column="info_writer" property="infoWriter" jdbcType="VARCHAR" />
+    <result column="info_title" property="infoTitle" jdbcType="VARCHAR" />
+    <result column="info_view_times" property="infoViewTimes" jdbcType="BIGINT" />
+    <result column="info_img_path" property="infoImgPath" jdbcType="VARCHAR" />
+    <result column="effect_flag" property="effectFlag" jdbcType="CHAR" />
+    <result column="delete_flag" property="deleteFlag" jdbcType="CHAR" />
+    <result column="published_time" property="publishedTime" jdbcType="TIMESTAMP" />
+    <result column="info_source" property="infoSource" jdbcType="CHAR" />
+    <result column="remark5" property="remark5" jdbcType="VARCHAR" />
+    <result column="remark4" property="remark4" jdbcType="VARCHAR" />
+    <result column="remark3" property="remark3" jdbcType="VARCHAR" />
+    <result column="remark2" property="remark2" jdbcType="VARCHAR" />
+    <result column="remark1" property="remark1" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.itheima.microservice.information.pojo.TbInformation" extends="BaseResultMap" >
+    <result column="info_details" property="infoDetails" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    info_id, info_type, info_writer, info_title, info_view_times, info_img_path, effect_flag, 
+    delete_flag, published_time, info_source, remark5, remark4, remark3, remark2, remark1
+  </sql>
+  <sql id="Blob_Column_List" >
+    info_details
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.itheima.microservice.information.pojo.TbInformationExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from tb_information
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.itheima.microservice.information.pojo.TbInformationExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_information
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from tb_information
+    where info_id = #{infoId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from tb_information
+    where info_id = #{infoId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.itheima.microservice.information.pojo.TbInformationExample" >
+    delete from tb_information
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.itheima.microservice.information.pojo.TbInformation" >
+    insert into tb_information (info_id, info_type, info_writer, 
+      info_title, info_view_times, info_img_path, 
+      effect_flag, delete_flag, published_time, 
+      info_source, remark5, remark4, 
+      remark3, remark2, remark1, 
+      info_details)
+    values (#{infoId,jdbcType=VARCHAR}, #{infoType,jdbcType=CHAR}, #{infoWriter,jdbcType=VARCHAR}, 
+      #{infoTitle,jdbcType=VARCHAR}, #{infoViewTimes,jdbcType=BIGINT}, #{infoImgPath,jdbcType=VARCHAR}, 
+      #{effectFlag,jdbcType=CHAR}, #{deleteFlag,jdbcType=CHAR}, #{publishedTime,jdbcType=TIMESTAMP}, 
+      #{infoSource,jdbcType=CHAR}, #{remark5,jdbcType=VARCHAR}, #{remark4,jdbcType=VARCHAR}, 
+      #{remark3,jdbcType=VARCHAR}, #{remark2,jdbcType=VARCHAR}, #{remark1,jdbcType=VARCHAR}, 
+      #{infoDetails,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.itheima.microservice.information.pojo.TbInformation" >
+    insert into tb_information
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="infoId != null" >
+        info_id,
+      </if>
+      <if test="infoType != null" >
+        info_type,
+      </if>
+      <if test="infoWriter != null" >
+        info_writer,
+      </if>
+      <if test="infoTitle != null" >
+        info_title,
+      </if>
+      <if test="infoViewTimes != null" >
+        info_view_times,
+      </if>
+      <if test="infoImgPath != null" >
+        info_img_path,
+      </if>
+      <if test="effectFlag != null" >
+        effect_flag,
+      </if>
+      <if test="deleteFlag != null" >
+        delete_flag,
+      </if>
+      <if test="publishedTime != null" >
+        published_time,
+      </if>
+      <if test="infoSource != null" >
+        info_source,
+      </if>
+      <if test="remark5 != null" >
+        remark5,
+      </if>
+      <if test="remark4 != null" >
+        remark4,
+      </if>
+      <if test="remark3 != null" >
+        remark3,
+      </if>
+      <if test="remark2 != null" >
+        remark2,
+      </if>
+      <if test="remark1 != null" >
+        remark1,
+      </if>
+      <if test="infoDetails != null" >
+        info_details,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="infoId != null" >
+        #{infoId,jdbcType=VARCHAR},
+      </if>
+      <if test="infoType != null" >
+        #{infoType,jdbcType=CHAR},
+      </if>
+      <if test="infoWriter != null" >
+        #{infoWriter,jdbcType=VARCHAR},
+      </if>
+      <if test="infoTitle != null" >
+        #{infoTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="infoViewTimes != null" >
+        #{infoViewTimes,jdbcType=BIGINT},
+      </if>
+      <if test="infoImgPath != null" >
+        #{infoImgPath,jdbcType=VARCHAR},
+      </if>
+      <if test="effectFlag != null" >
+        #{effectFlag,jdbcType=CHAR},
+      </if>
+      <if test="deleteFlag != null" >
+        #{deleteFlag,jdbcType=CHAR},
+      </if>
+      <if test="publishedTime != null" >
+        #{publishedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="infoSource != null" >
+        #{infoSource,jdbcType=CHAR},
+      </if>
+      <if test="remark5 != null" >
+        #{remark5,jdbcType=VARCHAR},
+      </if>
+      <if test="remark4 != null" >
+        #{remark4,jdbcType=VARCHAR},
+      </if>
+      <if test="remark3 != null" >
+        #{remark3,jdbcType=VARCHAR},
+      </if>
+      <if test="remark2 != null" >
+        #{remark2,jdbcType=VARCHAR},
+      </if>
+      <if test="remark1 != null" >
+        #{remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="infoDetails != null" >
+        #{infoDetails,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.itheima.microservice.information.pojo.TbInformationExample" resultType="java.lang.Integer" >
+    select count(*) from tb_information
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tb_information
+    <set >
+      <if test="record.infoId != null" >
+        info_id = #{record.infoId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.infoType != null" >
+        info_type = #{record.infoType,jdbcType=CHAR},
+      </if>
+      <if test="record.infoWriter != null" >
+        info_writer = #{record.infoWriter,jdbcType=VARCHAR},
+      </if>
+      <if test="record.infoTitle != null" >
+        info_title = #{record.infoTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.infoViewTimes != null" >
+        info_view_times = #{record.infoViewTimes,jdbcType=BIGINT},
+      </if>
+      <if test="record.infoImgPath != null" >
+        info_img_path = #{record.infoImgPath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.effectFlag != null" >
+        effect_flag = #{record.effectFlag,jdbcType=CHAR},
+      </if>
+      <if test="record.deleteFlag != null" >
+        delete_flag = #{record.deleteFlag,jdbcType=CHAR},
+      </if>
+      <if test="record.publishedTime != null" >
+        published_time = #{record.publishedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.infoSource != null" >
+        info_source = #{record.infoSource,jdbcType=CHAR},
+      </if>
+      <if test="record.remark5 != null" >
+        remark5 = #{record.remark5,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark4 != null" >
+        remark4 = #{record.remark4,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark3 != null" >
+        remark3 = #{record.remark3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark2 != null" >
+        remark2 = #{record.remark2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark1 != null" >
+        remark1 = #{record.remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.infoDetails != null" >
+        info_details = #{record.infoDetails,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update tb_information
+    set info_id = #{record.infoId,jdbcType=VARCHAR},
+      info_type = #{record.infoType,jdbcType=CHAR},
+      info_writer = #{record.infoWriter,jdbcType=VARCHAR},
+      info_title = #{record.infoTitle,jdbcType=VARCHAR},
+      info_view_times = #{record.infoViewTimes,jdbcType=BIGINT},
+      info_img_path = #{record.infoImgPath,jdbcType=VARCHAR},
+      effect_flag = #{record.effectFlag,jdbcType=CHAR},
+      delete_flag = #{record.deleteFlag,jdbcType=CHAR},
+      published_time = #{record.publishedTime,jdbcType=TIMESTAMP},
+      info_source = #{record.infoSource,jdbcType=CHAR},
+      remark5 = #{record.remark5,jdbcType=VARCHAR},
+      remark4 = #{record.remark4,jdbcType=VARCHAR},
+      remark3 = #{record.remark3,jdbcType=VARCHAR},
+      remark2 = #{record.remark2,jdbcType=VARCHAR},
+      remark1 = #{record.remark1,jdbcType=VARCHAR},
+      info_details = #{record.infoDetails,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tb_information
+    set info_id = #{record.infoId,jdbcType=VARCHAR},
+      info_type = #{record.infoType,jdbcType=CHAR},
+      info_writer = #{record.infoWriter,jdbcType=VARCHAR},
+      info_title = #{record.infoTitle,jdbcType=VARCHAR},
+      info_view_times = #{record.infoViewTimes,jdbcType=BIGINT},
+      info_img_path = #{record.infoImgPath,jdbcType=VARCHAR},
+      effect_flag = #{record.effectFlag,jdbcType=CHAR},
+      delete_flag = #{record.deleteFlag,jdbcType=CHAR},
+      published_time = #{record.publishedTime,jdbcType=TIMESTAMP},
+      info_source = #{record.infoSource,jdbcType=CHAR},
+      remark5 = #{record.remark5,jdbcType=VARCHAR},
+      remark4 = #{record.remark4,jdbcType=VARCHAR},
+      remark3 = #{record.remark3,jdbcType=VARCHAR},
+      remark2 = #{record.remark2,jdbcType=VARCHAR},
+      remark1 = #{record.remark1,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.itheima.microservice.information.pojo.TbInformation" >
+    update tb_information
+    <set >
+      <if test="infoType != null" >
+        info_type = #{infoType,jdbcType=CHAR},
+      </if>
+      <if test="infoWriter != null" >
+        info_writer = #{infoWriter,jdbcType=VARCHAR},
+      </if>
+      <if test="infoTitle != null" >
+        info_title = #{infoTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="infoViewTimes != null" >
+        info_view_times = #{infoViewTimes,jdbcType=BIGINT},
+      </if>
+      <if test="infoImgPath != null" >
+        info_img_path = #{infoImgPath,jdbcType=VARCHAR},
+      </if>
+      <if test="effectFlag != null" >
+        effect_flag = #{effectFlag,jdbcType=CHAR},
+      </if>
+      <if test="deleteFlag != null" >
+        delete_flag = #{deleteFlag,jdbcType=CHAR},
+      </if>
+      <if test="publishedTime != null" >
+        published_time = #{publishedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="infoSource != null" >
+        info_source = #{infoSource,jdbcType=CHAR},
+      </if>
+      <if test="remark5 != null" >
+        remark5 = #{remark5,jdbcType=VARCHAR},
+      </if>
+      <if test="remark4 != null" >
+        remark4 = #{remark4,jdbcType=VARCHAR},
+      </if>
+      <if test="remark3 != null" >
+        remark3 = #{remark3,jdbcType=VARCHAR},
+      </if>
+      <if test="remark2 != null" >
+        remark2 = #{remark2,jdbcType=VARCHAR},
+      </if>
+      <if test="remark1 != null" >
+        remark1 = #{remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="infoDetails != null" >
+        info_details = #{infoDetails,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where info_id = #{infoId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.itheima.microservice.information.pojo.TbInformation" >
+    update tb_information
+    set info_type = #{infoType,jdbcType=CHAR},
+      info_writer = #{infoWriter,jdbcType=VARCHAR},
+      info_title = #{infoTitle,jdbcType=VARCHAR},
+      info_view_times = #{infoViewTimes,jdbcType=BIGINT},
+      info_img_path = #{infoImgPath,jdbcType=VARCHAR},
+      effect_flag = #{effectFlag,jdbcType=CHAR},
+      delete_flag = #{deleteFlag,jdbcType=CHAR},
+      published_time = #{publishedTime,jdbcType=TIMESTAMP},
+      info_source = #{infoSource,jdbcType=CHAR},
+      remark5 = #{remark5,jdbcType=VARCHAR},
+      remark4 = #{remark4,jdbcType=VARCHAR},
+      remark3 = #{remark3,jdbcType=VARCHAR},
+      remark2 = #{remark2,jdbcType=VARCHAR},
+      remark1 = #{remark1,jdbcType=VARCHAR},
+      info_details = #{infoDetails,jdbcType=LONGVARCHAR}
+    where info_id = #{infoId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.itheima.microservice.information.pojo.TbInformation" >
+    update tb_information
+    set info_type = #{infoType,jdbcType=CHAR},
+      info_writer = #{infoWriter,jdbcType=VARCHAR},
+      info_title = #{infoTitle,jdbcType=VARCHAR},
+      info_view_times = #{infoViewTimes,jdbcType=BIGINT},
+      info_img_path = #{infoImgPath,jdbcType=VARCHAR},
+      effect_flag = #{effectFlag,jdbcType=CHAR},
+      delete_flag = #{deleteFlag,jdbcType=CHAR},
+      published_time = #{publishedTime,jdbcType=TIMESTAMP},
+      info_source = #{infoSource,jdbcType=CHAR},
+      remark5 = #{remark5,jdbcType=VARCHAR},
+      remark4 = #{remark4,jdbcType=VARCHAR},
+      remark3 = #{remark3,jdbcType=VARCHAR},
+      remark2 = #{remark2,jdbcType=VARCHAR},
+      remark1 = #{remark1,jdbcType=VARCHAR}
+    where info_id = #{infoId,jdbcType=VARCHAR}
+  </update>
+</mapper>
