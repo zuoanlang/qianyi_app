@@ -16,7 +16,7 @@ import java.util.List;
 
 
 /**
- * 内容分类管理Service
+ * 数据字典管理Service
  * <p>Title: CategoryServiceImpl</p>
  * <p>Description: </p>
  * <p>Company: www.itcast.cn</p> 
@@ -34,7 +34,7 @@ public class CategoryServiceImpl implements CategoryService {
 		TbCategoryExample example = new TbCategoryExample();
 		TbCategoryExample.Criteria criteria = example.createCriteria();
 		//设置查询条件
-		criteria.andParentIdEqualTo(parentId);
+		criteria.andParentIdEqualTo(parentId).andStatusEqualTo(1);
 		//执行查询
 		List<TbCategory> catList = CategoryMapper.selectByExample(example);
 		//转换成EasyUITreeNode的列表
@@ -59,8 +59,8 @@ public class CategoryServiceImpl implements CategoryService {
 		Category.setName(name);
 		//1(正常),2(删除)
 		Category.setStatus(1);
-		//默认排序就是1
-		Category.setSortOrder(1);
+		//排序
+		Category.setSortOrder(getNodeNumOfParent(parentId)+1);
 		//新添加的节点一定是叶子节点
 		Category.setIsParent(false);
 		Category.setCreated(new Date());
@@ -77,5 +77,52 @@ public class CategoryServiceImpl implements CategoryService {
 		}
 		//返回结果，返回E3Result，包含pojo
 		return E3Result.ok(Category);
+	}
+
+	@Override
+	public boolean editCategory(long id, String name) {
+		//1. 根据id查询节点
+		TbCategory tbCategory = CategoryMapper.selectByPrimaryKey(id);
+		//2. 设置更新条件
+		tbCategory.setUpdated(new Date());
+		tbCategory.setName(name);
+		//3. 跟新节点
+		TbCategoryExample example = new TbCategoryExample();
+		int i = CategoryMapper.updateByPrimaryKeySelective(tbCategory);
+		if(i>0){
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	public boolean deleteCategory(long id) {
+		// 根据parentid查询子节点列表
+		TbCategoryExample example = new TbCategoryExample();
+		//设置删除条件(逻辑删除)
+		//1. 根据id查询节点
+		TbCategory tbCategory = CategoryMapper.selectByPrimaryKey(id);
+		tbCategory.setStatus(0);
+		int i = CategoryMapper.updateByPrimaryKeySelective(tbCategory);
+		if(i>0){
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * 查询当前节点的下的子节点数目
+	 * @return int
+	 */
+	private int getNodeNumOfParent(Long parentId){
+		// 根据parentid查询子节点列表
+		TbCategoryExample example = new TbCategoryExample();
+		TbCategoryExample.Criteria criteria = example.createCriteria();
+		//设置查询条件
+		criteria.andParentIdEqualTo(parentId);
+		//执行查询
+		List<TbCategory> catList = CategoryMapper.selectByExample(example);
+
+		return catList.size();
 	}
 }

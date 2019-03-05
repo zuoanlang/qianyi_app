@@ -50,6 +50,12 @@ function menuHandler(item){
         $.messager.alert('提示','具体分类无法新建子分类！');
         return false;
     }
+
+	if(nodeDeep != 3 && item.name === "delete"){
+        $.messager.alert('提示','父节点无法删除！');
+        return false;
+    }
+
 	if(item.name === "add"){
 		tree.tree('append', {
             parent: (node?node.target:null),

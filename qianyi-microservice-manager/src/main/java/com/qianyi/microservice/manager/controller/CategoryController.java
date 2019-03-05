@@ -43,6 +43,25 @@ public class CategoryController {
 		E3Result e3Result = categoryServiceImpl.addContentCategory(parentId, name);
 		return e3Result;
 	}
+
+	/**
+	 * 修改分类节点
+	 */
+	@RequestMapping(value="/category/update", method=RequestMethod.POST)
+	@ResponseBody
+	public boolean editCategory(Long id, String name) {
+		//调用服务添加节点
+		return categoryServiceImpl.editCategory(id, name);
+	}
+
+	/**
+	 * 删除分类节点（逻辑删除）
+	 */
+	@RequestMapping(value="/category/delete", method=RequestMethod.POST)
+	@ResponseBody
+	public boolean deleteCategory(Long id) {
+		return categoryServiceImpl.deleteCategory(id);
+	}
 	
 	
 }

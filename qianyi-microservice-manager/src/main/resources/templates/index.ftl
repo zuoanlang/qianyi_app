@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>宜立方商城后台管理系统</title>
+<title>乾易后台管理系统</title>
 <link rel="stylesheet" type="text/css" href="../js/jquery-easyui-1.4.1/themes/gray/easyui.css" />
 <link rel="stylesheet" type="text/css" href="../js/jquery-easyui-1.4.1/themes/icon.css" />
 <link rel="stylesheet" type="text/css" href="../css/e3.css" />
@@ -33,11 +33,17 @@
 	         		<li data-options="attributes:{'url':'/pages/item-param-list'}">订单管理</li>
 	         	</ul>
          	</li>
+			<li>
+				<span>订单管理</span>
+				<ul>
+					<li data-options="attributes:{'url':'/pages/user-list'}">订单列表</li>
+				</ul>
+			</li>
          	<li>
          		<span>网站内容管理</span>
          		<ul>
 	         		<li data-options="attributes:{'url':'../pages/content-category'}">数据字典</li>
-	         		<li data-options="attributes:{'url':'../pages/content'}">内容管理</li>
+	         		<li data-options="attributes:{'url':'../pages/content'}">APP轮播</li>
 	         	</ul>
          	</li>
          	<li>

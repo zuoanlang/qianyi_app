@@ -6,18 +6,18 @@ spring:
     name: itcast-microservice-eureka #指定服务名
 
 eureka:
-  client:
-    registerWithEureka: true #是否将自己注册到Eureka服务中，本身就是所有无需注册
-    fetchRegistry: true #是否从Eureka中获取注册信息
-    serviceUrl: #Eureka客户端与Eureka服务端进行交互的地址
-      defaultZone: ${eureka.server}
-  instance:
-    prefer-ip-address:  true  #将自己的ip地址注册到Eureka服务中
-    ip-address: 127.0.0.1
-    instance-id: ${spring.application.name}:${server.port} #指定实例id
-  server:
-    enable-self-preservation: false #禁用自我保护模式
-    eviction-interval-timer-in-ms: 60000 #清理间隔（单位毫秒，默认是60*1000）
+#  client:
+#    registerWithEureka: false #是否将自己注册到Eureka服务中，本身就是所有无需注册
+#    fetchRegistry: false #是否从Eureka中获取注册信息
+#    serviceUrl: #Eureka客户端与Eureka服务端进行交互的地址
+#      defaultZone: ${eureka.server}
+#  instance:
+#    prefer-ip-address:  true  #将自己的ip地址注册到Eureka服务中
+#    ip-address: 127.0.0.1
+#    instance-id: ${spring.application.name}:${server.port} #指定实例id
+#  server:
+#    enable-self-preservation: false #禁用自我保护模式
+#    eviction-interval-timer-in-ms: 60000 #清理间隔（单位毫秒，默认是60*1000）
 
 #security:
 #  basic:
